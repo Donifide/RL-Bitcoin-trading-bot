@@ -7,6 +7,8 @@
 #   GitHub      : https://github.com/pythonlessons/RL-Bitcoin-trading-bot
 #   Description : functions to train/test multiple custom BTC trading environments
 #
+#   Used by     : Don Tadaya & Jason Crea
+#
 #================================================================
 from collections import deque
 from multiprocessing import Process, Pipe

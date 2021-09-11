@@ -2,10 +2,12 @@
 #
 #   File name   : model.py
 #   Author      : PyLessons
-#   Created date: 2021-01-13
+#   Created date: 2021-02-25
 #   Website     : https://pylessons.com/
 #   GitHub      : https://github.com/pythonlessons/RL-Bitcoin-trading-bot
-#   Description : defined PPO Keras model classes
+#   Description : Trading Crypto with Reinforcement Learning #7
+#
+#   Used by     : Don Tadaya & Jason Crea
 #
 #================================================================
 import numpy as np

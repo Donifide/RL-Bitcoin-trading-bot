@@ -7,6 +7,8 @@
 #   GitHub      : https://github.com/pythonlessons/RL-Bitcoin-trading-bot
 #   Description : Used to plot 5 indicators with OHCL bars and etc.
 #
+#   Used by     : Don Tadaya & Jason Crea
+#
 #================================================================
 import pandas as pd
 from ta.trend import SMAIndicator, macd, PSARIndicator

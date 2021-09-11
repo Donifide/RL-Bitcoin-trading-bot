@@ -1,17 +1,18 @@
 #================================================================
 #
-#   File name   : RL-Bitcoin-trading-bot_7.py
+#   File name   : Train-Dogecoin-trading-bot_7.py
 #   Author      : PyLessons
 #   Created date: 2021-02-25
 #   Website     : https://pylessons.com/
 #   GitHub      : https://github.com/pythonlessons/RL-Bitcoin-trading-bot
 #   Description : Trading Crypto with Reinforcement Learning #7
 #
+#   Used by     : Don Tadaya & Jason Crea
+#
 #================================================================
 import os
 #os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-import copy
-import random
+import copy, random, json
 from collections import deque
 from tensorboardX import SummaryWriter
 from tensorflow.keras.optimizers import Adam, RMSprop
@@ -21,20 +22,11 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from indicators import *
 from multiprocessing_env import train_multiprocessing, test_multiprocessing
-import json
-
-"""Assuming the following packages are installed:"""
-from IPython.display import clear_output
-clear_output()
-
-from scipy.signal import argrelextrema
 import matplotlib.pyplot as plt
 import pyarrow.parquet as pq
 import seaborn as sns
 import pandas as pd
 import numpy as np
-
-
 
 class CustomAgent:
     # A custom Bitcoin trading agent
@@ -496,8 +488,10 @@ if __name__ == "__main__":
     #train_agent(train_env, agent, visualize=False, train_episodes=50000, training_batch_size=500)
 
     # multiprocessing training/testing. Note - run from cmd or terminal
-    agent = CustomAgent(lookback_window_size=lookback_window_size, lr=0.00001, epochs=5, optimizer=Adam, batch_size=32, model="CNN", depth=depth, comment="Normalized")
-    train_multiprocessing(CustomEnv, agent, train_df, train_df_nomalized, num_worker = 32, training_batch_size=500, visualize=True, EPISODES=200000) #Orig:200000
+    #agent = CustomAgent(lookback_window_size=lookback_window_size, lr=0.00001, epochs=5, optimizer=Adam, batch_size=32, model="CNN", depth=depth, comment="Normalized")
+    #train_multiprocessing(CustomEnv, agent, train_df, train_df_nomalized, num_worker = 32, training_batch_size=500, visualize=True, EPISODES=200000) #Orig:200000
 
     #test_multiprocessing(CustomEnv, CustomAgent, test_df, test_df_nomalized, num_worker = 16, visualize=False, test_episodes=1000, folder="2021_02_18_21_48_Crypto_trader", name="3906.52_Crypto_trader", comment="3 months")
-    #test_multiprocessing(CustomEnv, CustomAgent, test_df, test_df_nomalized, num_worker = 16, visualize=True, test_episodes=1000, folder="2021_02_21_17_54_Crypto_trader", name="3263.63_Crypto_trader", comment="3 months")
+    test_multiprocessing(CustomEnv, CustomAgent, test_df, test_df_nomalized, num_worker = 16, visualize=True, test_episodes=1000, folder=input("Enter folder name of choice:"),#"2021_02_21_17_54_Crypto_trader", 
+name=str(input("Enter actor/critic prefix:")+"_Crypto_trader"),#"3263.63_Crypto_trader", 
+comment="3 months")
