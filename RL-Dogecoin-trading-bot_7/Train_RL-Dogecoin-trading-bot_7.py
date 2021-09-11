@@ -11,6 +11,7 @@
 #
 #================================================================
 import os
+os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
 #os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import copy, random, json
 from collections import deque
