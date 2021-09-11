@@ -245,7 +245,7 @@ def Plot_OHCL(df):
     df["Date"] = pd.to_datetime(df.Date)
     df["Date"] = df["Date"].apply(mpl_dates.date2num)
 
-    df = df[['Date', 'Open', 'High', 'Low', 'Close', 'Volume']] #Might be able to remove Volume to eliminate errors with .ohlc()
+    df = df[['Date', 'Open', 'High', 'Low', 'Close', 'Volume']]
     
     # We are using the style ‘ggplot’
     plt.style.use('ggplot')
@@ -291,7 +291,7 @@ def Plot_OHCL(df):
     plt.show()
 
 def Normalizing(df_original):
-    df = df_original.copy()
+    df = df_original.copy()[['Open','High','Low','Close']]
     column_names = df.columns.tolist()
     for column in column_names[1:]:
         # Logging and Differencing
@@ -309,7 +309,7 @@ def Normalizing(df_original):
 
 if __name__ == "__main__":
     # testing normalization technieques
-    df = pd.read_csv('DOGEUSDT_1h.csv')
+    df = pd.read_csv('LTCUSDT_1h.csv')
     df = df.dropna()
     df = df.sort_values('Date')
 

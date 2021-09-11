@@ -11,7 +11,6 @@
 #
 #================================================================
 import os
-os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
 #os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import copy, random, json
 from collections import deque
@@ -459,7 +458,9 @@ def test_agent(test_df, test_df_nomalized, visualize=True, test_episodes=10, fol
         
 #Run
 if __name__ == "__main__":            
-    df = pd.read_csv('DOGEUSDT_1h.csv')
+    df = pq.read_table('DOGE-USDT.parquet').to_pandas().reset_index(drop=False)
+    df = df.set_index('open_time')['close'].resample('1h').ohlc().reset_index(drop=False)
+    df.rename(columns={'open_time':'Date','open': 'Open', 'high': 'High', 'low':'Low', 'close':'Close', 'volume':'Volume'}, inplace=True)
     df = df.dropna()
     df = df.sort_values('Date')
 

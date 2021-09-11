@@ -459,7 +459,7 @@ def test_agent(test_df, test_df_nomalized, visualize=True, test_episodes=10, fol
         
 #Run
 if __name__ == "__main__":            
-    df = pd.read_csv('DOGEUSDT_1h.csv')
+    df = pd.read_csv('LTCUSDT_1h.csv')
     df = df.dropna()
     df = df.sort_values('Date')
 

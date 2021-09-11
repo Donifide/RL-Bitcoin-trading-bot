@@ -459,7 +459,7 @@ def test_agent(test_df, test_df_nomalized, visualize=True, test_episodes=10, fol
         
 #Run
 if __name__ == "__main__":            
-    df = pd.read_csv('DOGEUSDT_1h.csv')
+    df = pd.read_csv('LTCUSDT_1h.csv')
     df = df.dropna()
     df = df.sort_values('Date')
 
@@ -487,8 +487,10 @@ if __name__ == "__main__":
     #train_agent(train_env, agent, visualize=False, train_episodes=50000, training_batch_size=500)
 
     # multiprocessing training/testing. Note - run from cmd or terminal
-    agent = CustomAgent(lookback_window_size=lookback_window_size, lr=0.00001, epochs=5, optimizer=Adam, batch_size=32, model="CNN", depth=depth, comment="Normalized")
-    train_multiprocessing(CustomEnv, agent, train_df, train_df_nomalized, num_worker = 32, training_batch_size=500, visualize=False, EPISODES=200000) #Orig:200000
+    #agent = CustomAgent(lookback_window_size=lookback_window_size, lr=0.00001, epochs=5, optimizer=Adam, batch_size=32, model="CNN", depth=depth, comment="Normalized")
+    #train_multiprocessing(CustomEnv, agent, train_df, train_df_nomalized, num_worker = 32, training_batch_size=500, visualize=True, EPISODES=200000) #Orig:200000
 
     #test_multiprocessing(CustomEnv, CustomAgent, test_df, test_df_nomalized, num_worker = 16, visualize=False, test_episodes=1000, folder="2021_02_18_21_48_Crypto_trader", name="3906.52_Crypto_trader", comment="3 months")
-    #test_multiprocessing(CustomEnv, CustomAgent, test_df, test_df_nomalized, num_worker = 16, visualize=True, test_episodes=1000, folder="2021_02_21_17_54_Crypto_trader", name="3263.63_Crypto_trader", comment="3 months")
+    test_multiprocessing(CustomEnv, CustomAgent, test_df, test_df_nomalized, num_worker = 16, visualize=True, test_episodes=1000, folder=input("Enter folder name of choice:"),#"2021_02_21_17_54_Crypto_trader", 
+name=str(input("Enter actor/critic prefix:")+"_Crypto_trader"),#"3263.63_Crypto_trader", 
+comment="3 months")
