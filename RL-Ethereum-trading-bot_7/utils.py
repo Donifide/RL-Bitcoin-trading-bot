@@ -291,7 +291,7 @@ def Plot_OHCL(df):
     plt.show()
 
 def Normalizing(df_original):
-    df = df_original.copy()
+    df = df_original.copy()[['Open','High','Low','Close']]
     column_names = df.columns.tolist()
     for column in column_names[1:]:
         # Logging and Differencing
