@@ -309,7 +309,7 @@ def Normalizing(df_original):
 
 if __name__ == "__main__":
     # testing normalization technieques
-    df = pd.read_csv('./BTCUSD_1h.csv')
+    df = pd.read_csv('ETHUSDT_1h.csv')
     df = df.dropna()
     df = df.sort_values('Date')
 
