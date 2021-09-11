@@ -44,5 +44,11 @@ df.drop_duplicates(inplace=True)
 df['Date'] = pd.to_datetime(df['Date'], unit='ms')
 df.set_index('Date', inplace=True)
 df.sort_index(inplace=True)
+
+import pyarrow.parquet as pq
+#Force true
+df = pq.read_table('DOGE-USDT.parquet').to_pandas().reset_index(drop=False)
+df = df.set_index('open_time')['close'].resample('1h').ohlc().reset_index(drop=False)
+df.rename(columns={'open_time':'Date','open': 'Open', 'high': 'High', 'low':'Low', 'close':'Close', 'volume':'Volume'}, inplace=True)
 df.to_csv(f"{pair}_{TIMEFRAME}_.csv")
 
